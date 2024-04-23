@@ -27,6 +27,22 @@ const Guess = (props) => {
       e.preventDefault()
       setReadOnly(true)
       console.log('Event handled')
+      console.log('Letter1', input1.current.value)
+      if (input1.current.value == answer[0]){
+        input1.current.style.backgroundColor = 'green'
+      }
+      if (input2.current.value == answer[1]){
+        input2.current.style.backgroundColor = 'green'
+      }
+      if (input3.current.value == answer[2]){
+        input3.current.style.backgroundColor = 'green'
+      }
+      if (input4.current.value == answer[3]){
+        input4.current.style.backgroundColor = 'green'
+      }
+      if (input5.current.value == answer[4]){
+        input5.current.style.backgroundColor = 'green'
+      }
   }
 
     function changeLetter1(e) {

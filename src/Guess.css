@@ -1,4 +1,6 @@
 input {
     height: 50px;
     margin: 1em;
+    text-align: center;
+    font-weight: bold;
 }
