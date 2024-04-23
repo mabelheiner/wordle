@@ -4,6 +4,7 @@ import './Guess.css'
 const Guess = (props) => {
     const [answer, setAnswer] = useState('')
     const [guess, setGuess] = useState('')
+    const [readOnly, setReadOnly] = useState(false)
     const [letter1, setLetter1] = useState('')
     const [letter2, setLetter2] = useState('')
     const [letter3, setLetter3] = useState('')
@@ -17,11 +18,15 @@ const Guess = (props) => {
     const input5 = useRef(null)
 
     useEffect(() => {
+      console.log('Props received', props)
       setAnswer(props.answer)
+      setGuess(props.guessNumber)
     }, [])
 
     function handleSubmit(e) {
       e.preventDefault()
+      setReadOnly(true)
+      console.log('Event handled')
   }
 
     function changeLetter1(e) {
@@ -64,13 +69,13 @@ const Guess = (props) => {
 
   return (
     <>
-    <h2>Word to guess: {letter5}</h2>
+    <h2>Word to guess: {guess}</h2>
     <form>
-        <input type="text" name="first" id="first" ref={input1} maxLength={1} onChange={changeLetter1}/>
-        <input type="text" name="second" id="second" ref={input2} maxLength={1} onChange={changeLetter2}/>
-        <input type="text" name="third" id="third" ref={input3} maxLength={1} onChange={changeLetter3}/>
-        <input type="text" name="fourth" id="fourth" ref={input4} maxLength={1} onChange={changeLetter4}/>
-        <input type="text" name="fifth" id="fifth" ref={input5} maxLength={1} onChange={changeLetter5}/>
+        <input type="text" name="first" id="first" ref={input1} maxLength={1} readOnly={readOnly} onChange={changeLetter1}/>
+        <input type="text" name="second" id="second" ref={input2} maxLength={1} readOnly={readOnly} onChange={changeLetter2}/>
+        <input type="text" name="third" id="third" ref={input3} maxLength={1} readOnly={readOnly} onChange={changeLetter3}/>
+        <input type="text" name="fourth" id="fourth" ref={input4} maxLength={1} readOnly={readOnly} onChange={changeLetter4}/>
+        <input type="text" name="fifth" id="fifth" ref={input5} maxLength={1} readOnly={readOnly} onChange={changeLetter5}/>
         <button onClick={handleSubmit}>Guess</button>
     </form>
     </>

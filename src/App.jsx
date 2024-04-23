@@ -22,14 +22,22 @@ function App() {
     getWord()
   }, [])
 
+  while (answer == '') {
+    return (
+      <>
+      <h1>Loading...</h1>
+      </>
+    )
+  }
+
   return (
     <>
       <h1>Wordle</h1>
-      <Guess answer={answer}/>
-      <Guess answer={answer}/>
-      <Guess answer={answer}/>
-      <Guess answer={answer}/>
-      <Guess answer={answer}/>
+      <Guess answer={answer} guessNumber={1}/>
+      <Guess answer={answer} guessNumber={2}/>
+      <Guess answer={answer} guessNumber={3}/>
+      <Guess answer={answer} guessNumber={4}/>
+      <Guess answer={answer} guessNumber={5}/>
     </>
   )
 }
