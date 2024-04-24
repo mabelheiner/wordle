@@ -4,6 +4,11 @@ import Guess from './Guess'
 
 function App() {
   const [answer, setAnswer] = useState('')
+  const [win, setWin] = useState(false)
+
+  const handleWin = (winResult) => {
+    setWin(winResult)
+  }
 
   async function getWord() {
     try {
@@ -33,11 +38,12 @@ function App() {
   return (
     <>
       <h1>Wordle</h1>
-      <Guess answer={answer} guessNumber={1}/>
-      <Guess answer={answer} guessNumber={2}/>
-      <Guess answer={answer} guessNumber={3}/>
-      <Guess answer={answer} guessNumber={4}/>
-      <Guess answer={answer} guessNumber={5}/>
+      <Guess answer={answer} guessNumber={1} win={win} onWinChange={handleWin}/>
+      <Guess answer={answer} guessNumber={2} win={win} onWinChange={handleWin}/>
+      <Guess answer={answer} guessNumber={3} win={win} onWinChange={handleWin}/>
+      <Guess answer={answer} guessNumber={4} win={win} onWinChange={handleWin}/>
+      <Guess answer={answer} guessNumber={5} win={win} onWinChange={handleWin}/>
+      {win ? <h1>You won!</h1> : <h1>No win yet</h1>}
     </>
   )
 }
