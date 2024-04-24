@@ -1,6 +1,13 @@
 input {
-    height: 50px;
+    width: 50px;
     margin: 1em;
+    padding: 1em;
     text-align: center;
     font-weight: bold;
+    font-size: larger;
+    margin-bottom: 0;
+}
+
+button {
+    visibility: hidden;
 }

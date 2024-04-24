@@ -31,17 +31,36 @@ const Guess = (props) => {
       if (input1.current.value == answer[0]){
         input1.current.style.backgroundColor = 'green'
       }
+      else if (answer.includes(input1.current.value)){
+        input1.current.style.backgroundColor = 'yellow'
+      }
+
       if (input2.current.value == answer[1]){
         input2.current.style.backgroundColor = 'green'
       }
+      else if (answer.includes(input2.current.value)){
+        input2.current.style.backgroundColor = 'yellow'
+      }
+
       if (input3.current.value == answer[2]){
         input3.current.style.backgroundColor = 'green'
       }
+      else if (answer.includes(input3.current.value)){
+        input3.current.style.backgroundColor = 'yellow'
+      }
+
       if (input4.current.value == answer[3]){
         input4.current.style.backgroundColor = 'green'
       }
+      else if (answer.includes(input4.current.value)){
+        input4.current.style.backgroundColor = 'yellow'
+      }
+
       if (input5.current.value == answer[4]){
         input5.current.style.backgroundColor = 'green'
+      }
+      else if (answer.includes(input5.current.value)){
+        input5.current.style.backgroundColor = 'yellow'
       }
   }
 
@@ -85,7 +104,6 @@ const Guess = (props) => {
 
   return (
     <>
-    <h2>Word to guess: {guess}</h2>
     <form>
         <input type="text" name="first" id="first" ref={input1} maxLength={1} readOnly={readOnly} onChange={changeLetter1}/>
         <input type="text" name="second" id="second" ref={input2} maxLength={1} readOnly={readOnly} onChange={changeLetter2}/>
