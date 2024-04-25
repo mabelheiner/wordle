@@ -5,9 +5,14 @@ import Guess from './Guess'
 function App() {
   const [answer, setAnswer] = useState('')
   const [win, setWin] = useState(false)
+  const [currGuess, setCurrGuess] = useState(1)
 
   const handleWin = (winResult) => {
     setWin(winResult)
+  }
+
+  const handleGuessChange = (guess) => {
+    setCurrGuess(guess)
   }
 
   async function getWord() {
@@ -38,12 +43,18 @@ function App() {
   return (
     <>
       <h1>Wordle</h1>
-      <Guess answer={answer} guessNumber={1} win={win} onWinChange={handleWin}/>
-      <Guess answer={answer} guessNumber={2} win={win} onWinChange={handleWin}/>
-      <Guess answer={answer} guessNumber={3} win={win} onWinChange={handleWin}/>
-      <Guess answer={answer} guessNumber={4} win={win} onWinChange={handleWin}/>
-      <Guess answer={answer} guessNumber={5} win={win} onWinChange={handleWin}/>
-      {win ? <h1>You won!</h1> : <h1>No win yet</h1>}
+      <p>Current guess: {currGuess}</p>
+      <Guess answer={answer} guessNumber={1} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
+      <Guess answer={answer} guessNumber={2} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
+      <Guess answer={answer} guessNumber={3} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
+      <Guess answer={answer} guessNumber={4} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
+      <Guess answer={answer} guessNumber={5} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
+      {win ? 
+      <>
+        <h1>You won!</h1>
+      </> 
+      : 
+      <h1></h1>}
     </>
   )
 }
