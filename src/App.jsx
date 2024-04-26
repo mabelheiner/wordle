@@ -19,6 +19,7 @@ function App() {
     try {
       const response = await fetch("https://random-word-api.vercel.app/api?words=1&length=5")
       const data = await response.json()
+      console.log('Data received', data)
       const solution = data[0]
       console.log("New word", solution)
       setAnswer(solution)

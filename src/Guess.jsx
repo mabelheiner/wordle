@@ -77,27 +77,27 @@ const Guess = (props) => {
         solution = solution.replace(answer[4], " ")
       }
 
-      if (solution.includes(input1.current.value) && input1.current.style.backgroundColor != 'green'){
+      if (solution.includes(input1.current.value)){
         input1.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input1.current.value, " ")
       }
 
-      if (solution.includes(input2.current.value && input2.current.style.backgroundColor != 'green')){
+      if (solution.includes(input2.current.value)){
         input2.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input2.current.value, " ")
       }
 
-      if (solution.includes(input3.current.value && input3.current.style.backgroundColor != 'green')){
+      if (solution.includes(input3.current.value)){
         input3.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input3.current.value, " ")
       }
       
-      if (solution.includes(input4.current.value && input4.current.style.backgroundColor != 'green')){
+      if (solution.includes(input4.current.value)){
         input4.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input4.current.value, " ")
       }
 
-      if (solution.includes(input5.current.value && input5.current.style.backgroundColor != 'green')){
+      if (solution.includes(input5.current.value)){
         input5.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input5.current.value, " ")
       }
