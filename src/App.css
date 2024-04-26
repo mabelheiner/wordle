@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.success-message{
+  padding: 3em;
+  display: block;
+  position: absolute;
+  top: 40%;
+  left: 42%
+}

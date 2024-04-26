@@ -43,7 +43,6 @@ function App() {
   return (
     <>
       <h1>Wordle</h1>
-      <p>Current guess: {currGuess}</p>
       <Guess answer={answer} guessNumber={1} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
       <Guess answer={answer} guessNumber={2} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
       <Guess answer={answer} guessNumber={3} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
@@ -51,10 +50,19 @@ function App() {
       <Guess answer={answer} guessNumber={5} currGuess={currGuess} onCurrGuessChange={handleGuessChange} win={win} onWinChange={handleWin}/>
       {win ? 
       <>
-        <h1>You won!</h1>
+        <form>
+          <button className='success-message'>You won!</button>
+        </form>
       </> 
       : 
-      <h1></h1>}
+      <p></p>}
+      {!win && currGuess == 6 ? 
+      <>
+      <form>
+        <button className='success-message'>Oh no! You didn't guess the word!</button>
+      </form>
+      </> : <p></p>}
+      
     </>
   )
 }

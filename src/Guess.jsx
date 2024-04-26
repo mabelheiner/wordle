@@ -18,6 +18,7 @@ const Guess = (props) => {
     const input5 = useRef(null)
 
     useEffect(() => {
+      input1.current.focus()
       console.log('Props received', props)
       setAnswer(props.answer)
       setGuess(props.guessNumber)
@@ -32,6 +33,7 @@ const Guess = (props) => {
       }
 
       console.log('Boolean result', props.guessNumber == props.currGuess)
+      
     }, [])
 
     function handleSubmit(e) {
@@ -75,27 +77,27 @@ const Guess = (props) => {
         solution = solution.replace(answer[4], " ")
       }
 
-      if (solution.includes(input1.current.value)){
+      if (solution.includes(input1.current.value) && input1.current.style.backgroundColor != 'green'){
         input1.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input1.current.value, " ")
       }
 
-      if (solution.includes(input2.current.value)){
+      if (solution.includes(input2.current.value && input2.current.style.backgroundColor != 'green')){
         input2.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input2.current.value, " ")
       }
 
-      if (solution.includes(input3.current.value)){
+      if (solution.includes(input3.current.value && input3.current.style.backgroundColor != 'green')){
         input3.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input3.current.value, " ")
       }
       
-      if (solution.includes(input4.current.value)){
+      if (solution.includes(input4.current.value && input4.current.style.backgroundColor != 'green')){
         input4.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input4.current.value, " ")
       }
 
-      if (solution.includes(input5.current.value)){
+      if (solution.includes(input5.current.value && input5.current.style.backgroundColor != 'green')){
         input5.current.style.backgroundColor = 'goldenrod'
         solution = solution.replace(input5.current.value, " ")
       }
@@ -104,53 +106,52 @@ const Guess = (props) => {
   }
 
     function changeLetter1(e) {
+      console.log('Event', e.code)
       setLetter1(e.target.value)
-      if (e.target.value != "")
+      if (e.target.value != "" && e.code != 'Backspace')
         input2.current.focus()
-      else
+      else if (e.target.value == "" && e.code == 'Backspace')
         input1.current.focus()
     }
 
     function changeLetter2(e) {
       setLetter2(e.target.value)
-      if (e.target.value != "")
+      if (e.target.value != "" && e.code != 'Backspace')
         input3.current.focus()
-      else
+      else if (e.target.value == "" && e.code == 'Backspace')
         input1.current.focus()
     }
 
     function changeLetter3(e) {
       setLetter3(e.target.value)
-      if (e.target.value != "")
+      if (e.target.value != "" && e.code != 'Backspace')
         input4.current.focus()
-      else
+      else if (e.target.value == "" && e.code == 'Backspace')
         input2.current.focus()
     }
 
     function changeLetter4(e) {
       setLetter4(e.target.value)
-      if (e.target.value != "")
+      if (e.target.value != "" && e.code != 'Backspace')
         input5.current.focus()
-      else
+      else if (e.target.value == "" && e.code == 'Backspace')
         input3.current.focus()
     }
 
     function changeLetter5(e) {
       setLetter5(e.target.value)
-      if (e.target.value == "")
+      if (e.target.value == "" && e.code == 'Backspace')
         input4.current.focus()
     }
 
   return (
     <>
-    <p>Test word: </p>
-    <p>Guess number: {guess}</p>
     <form>
-        <input type="text" name="first" id="first" ref={input1} maxLength={1} onChange={changeLetter1} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
-        <input type="text" name="second" id="second" ref={input2} maxLength={1} onChange={changeLetter2} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
-        <input type="text" name="third" id="third" ref={input3} maxLength={1} onChange={changeLetter3} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
-        <input type="text" name="fourth" id="fourth" ref={input4} maxLength={1} onChange={changeLetter4} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
-        <input type="text" name="fifth" id="fifth" ref={input5} maxLength={1} onChange={changeLetter5} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
+        <input type="text" name="first" id="first" ref={input1} maxLength={1} onKeyDown={changeLetter1} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
+        <input type="text" name="second" id="second" ref={input2} maxLength={1} onKeyDown={changeLetter2} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
+        <input type="text" name="third" id="third" ref={input3} maxLength={1} onKeyDown={changeLetter3} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
+        <input type="text" name="fourth" id="fourth" ref={input4} maxLength={1} onKeyDown={changeLetter4} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
+        <input type="text" name="fifth" id="fifth" ref={input5} maxLength={1} onKeyDown={changeLetter5} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
         <button onClick={handleSubmit}>Guess</button>
     </form>
     </>
