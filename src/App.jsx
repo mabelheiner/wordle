@@ -21,8 +21,17 @@ function App() {
       const data = await response.json()
       console.log('Data received', data)
       const solution = data[0]
-      console.log("New word", solution)
-      setAnswer(solution)
+
+      const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${solution}`)
+      const check = await res.json()
+
+      if (check.title == 'No Definitions Found'){
+        getWord()
+      }
+      else {
+        console.log("New word", solution)
+        setAnswer(solution)
+      }
     }
     catch (error) {
         console.log("unable to fetch word", error.message)
