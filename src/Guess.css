@@ -16,3 +16,12 @@ input:disabled {
 button {
     display: none;
 }
+
+.message {
+    display: block;
+    padding: 3em;
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 42%
+}

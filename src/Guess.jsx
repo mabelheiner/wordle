@@ -5,6 +5,7 @@ const Guess = (props) => {
     const [answer, setAnswer] = useState('')
     const [guess, setGuess] = useState('')
     const [disable, setDisable] = useState(true)
+    const [error, setError] = useState(false)
     const [letter1, setLetter1] = useState('')
     const [letter2, setLetter2] = useState('')
     const [letter3, setLetter3] = useState('')
@@ -16,6 +17,7 @@ const Guess = (props) => {
     const input3 = useRef(null)
     const input4 = useRef(null)
     const input5 = useRef(null)
+    const messageButton = useRef(null)
 
     useEffect(() => {
       input1.current.focus()
@@ -36,11 +38,32 @@ const Guess = (props) => {
       
     }, [])
 
-    function handleSubmit(e) {
+    function handleWordMessage(e) {
       e.preventDefault()
-      setDisable(true)
+      messageButton.current.style.display = 'none'
+      setError(false)
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault()
       const guessWord = input1.current.value + input2.current.value + input3.current.value + input4.current.value + input5.current.value
 
+      try {
+        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${guessWord}`)
+        const data = await response.json()
+
+        if (data.title == 'No Definitions Found'){
+          setError(true)
+          return
+        }
+      } catch (error) {
+          setError(true)
+          return
+      }
+
+
+      setDisable(true)
+      
       let solution = answer
 
       if (guessWord == answer){
@@ -146,6 +169,7 @@ const Guess = (props) => {
 
   return (
     <>
+    {error ? <button className='message' ref={messageButton} onClick={handleWordMessage}>Word not found in word list</button> : <p></p>}
     <form>
         <input type="text" name="first" id="first" ref={input1} maxLength={1} onKeyDown={changeLetter1} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
         <input type="text" name="second" id="second" ref={input2} maxLength={1} onKeyDown={changeLetter2} {...(props.guessNumber === props.currGuess ? {} : { disabled: true })}/>
