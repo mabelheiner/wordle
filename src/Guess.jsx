@@ -21,21 +21,15 @@ const Guess = (props) => {
 
     useEffect(() => {
       input1.current.focus()
-      console.log('Props received', props)
       setAnswer(props.answer)
       setGuess(props.guessNumber)
 
       if (props.guessNumber != props.currGuess) {
         setDisable(true)
-        console.log('This is current guess')
       }
       else {
         setDisable(false)
-        console.log('Nope')
-      }
-
-      console.log('Boolean result', props.guessNumber == props.currGuess)
-      
+      }      
     }, [])
 
     function handleWordMessage(e) {
@@ -67,7 +61,6 @@ const Guess = (props) => {
       let solution = answer
 
       if (guessWord == answer){
-        console.log('Win achieved!')
         props.onWinChange(true)
       }
 
@@ -79,16 +72,12 @@ const Guess = (props) => {
       if (input2.current.value == answer[1]){
         input2.current.style.backgroundColor = 'green'
         solution = solution.replace(answer[1], " ")
-      }
-
-      console.log('Solution', solution)
-      
+      }      
 
       if (input3.current.value == answer[2]){
         input3.current.style.backgroundColor = 'green'
         solution = solution.replace(answer[2], " ")
-      }
-      
+      }      
 
       if (input4.current.value == answer[3]){
         input4.current.style.backgroundColor = 'green'
@@ -129,7 +118,6 @@ const Guess = (props) => {
   }
 
     function changeLetter1(e) {
-      console.log('Event', e.code)
       setLetter1(e.target.value)
       if (e.target.value != "" && e.code != 'Backspace')
         input2.current.focus()
